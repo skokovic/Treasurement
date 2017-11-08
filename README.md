@@ -1,2 +1,12 @@
 # Treasurement
-Game Dev Repo
+## Game Development project
+### Design Philosophy
+This game, although it is a turn based strategy, is designed to make players excited and thrilled since it is placed in the middle of the ocean which is not so common and alternates from other popular TBS games. It brings the best of both sides, the need for developing a good strategy for your gameplay and interaction with other players in a fun way (which steps out of TBS a bit). For every player interaction there will be a mini game! Games in this genre tend to be long lasting which can be exhausting but we are delivering strategy in a complete new way. Three quicker matches, that are somewhat connected to each other, decide the overall winner. The player’s character is set on a trip around the map where he needs to do his best in collecting some kind of treasure. Players are matched with each other by our matchmaking system.
+
+### Objectives
+Player as a ship is set on a map and the primary objective is to collect the most treasure in a round. The winner of the round is the player with most treasure.
+Players are encouraged to upgrade their ships by spending treasure they collected in order to collect treasure easier and faster. Keep in mind, the winner is the ship with most treasure at the end of the round, not the most advanced ship. 
+As a side objective, there will be battle between players if their paths collide. The winner of the battle will receive 10% of loser’s treasure. It is another way of collecting treasure and possibly sabotaging your opponents.
+
+### Challenges
+There are two main challenges set before the player. One is to develop a strategy that will make him the winner of the round. If a strategy is not planned out and is poorly executed, the player won’t have enough treasure collected and thus, will lose the round. Players need to make the right decisions for making a path through the map and also select the best time to upgrade their ships. The other challenge is the mini game battle with the players they intercept. Players can develop a strategy of avoiding other ships or they can go the other way and build their game around encountering with other players. The mini battle encounters are risky as you don’t know what upgrades your opponent has bought. If a player loses the mini battle, he will lose a part of his collected treasure and possibly a turn. Shopping for upgrades can increase players chances of winning a battle but he must use his collected treasure to obtain an upgrade. 
