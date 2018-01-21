@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ground : MonoBehaviour {
+public class Ground : MonoBehaviour
+{
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		SM = GameObject.FindObjectOfType<StateManager> ();
-		material = GetComponent<MeshRenderer>().material;
+		material = GetComponent<MeshRenderer> ().material;
 		treasure = (int)Random.Range (500, 1500);
 	}
 
@@ -14,21 +16,38 @@ public class Ground : MonoBehaviour {
 	public Ground[] Adjacent;
 	public Material material;
 	public int treasure;
+	public bool available = false;
+	public bool looted = false;
 
-	void OnMouseUp(){
+	void OnMouseUp ()
+	{
+		if (SM.CurrentPlayerID < 0) {
+			return;
+		}
 		SM.setDestination (this);
 	}
 
-	public void Select(){
+	public void Select ()
+	{
 		material.color = Color.yellow;
 	}
 
-	public void Unselect(){
-		material.color = Color.white;
+	public void Unselect ()
+	{
+		if (available && looted) {
+			material.color = Color.blue;
+		} else if (available) {
+			material.color = Color.green;
+		} else if (looted) {
+			material.color = Color.grey;
+		} else {
+			material.color = Color.white;
+		}
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 	
 	}
 

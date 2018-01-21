@@ -16,6 +16,9 @@ public class TreasureDisplay : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (SM.CurrentPlayerID < 0)
+			return;
+		
 		for (int i = 0; i < SM.NumberOfPlayers; i++) {
 			if (SM.Players [i].PlayerID == SM.CurrentPlayerID) {
 				myText.text = "Treasure: " + SM.Players [i].treasure;

@@ -17,6 +17,9 @@ public class CurrentPlayerDisplay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (SM.CurrentPlayerID < 0)
+			return;
+		
 		myText.text = "Current player: " + numbers [SM.CurrentPlayerID];
 		switch (SM.CurrentPlayerID) {
 		case 0:
