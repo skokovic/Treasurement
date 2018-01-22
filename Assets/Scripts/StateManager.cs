@@ -63,12 +63,13 @@ public class StateManager : MonoBehaviour
 		setTargetPosition (tmpGround);
 		CurrentPlayerID = (CurrentPlayerID + 1) % NumberOfPlayers;
 
-		available ();
+
 
 		if (CurrentPlayerID % NumberOfPlayers == 0) {
 			EndOfTurn ();
 		}
 
+		available ();
 
 	}
 
@@ -132,11 +133,13 @@ public class StateManager : MonoBehaviour
 	public void EndOfTurn ()
 	{
 
-		Battle ();
+
 
 		for (int i = 0; i < NumberOfPlayers; i++) {
 			Players [i].isAnimating = true;
 		}
+
+		BattlePrep ();
 
 		for (int i = 0; i < NumberOfPlayers; i++) {
 			Players [i].treasure += Players [i].getCurrentGround ().treasure;
@@ -169,7 +172,7 @@ public class StateManager : MonoBehaviour
 			}
 		}
 
-		t.text = "Winner is player " + (ID+1) + ".";
+		t.text = "Winner is player " + (ID + 1) + ".";
 		switch (ID) {
 		case 0:
 			t.color = Color.blue;
@@ -196,7 +199,7 @@ public class StateManager : MonoBehaviour
 		GameCanvas.SetActive (false);
 		EndGameCanvas.SetActive (false);
 
-		NumberOfTurns = 4;
+		NumberOfTurns = 5;
 		CurrentPlayerID = -1;
 
 		for (int i = 0; i < NumberOfPlayers; i++) {
@@ -216,10 +219,55 @@ public class StateManager : MonoBehaviour
 		}
 	}
 
-	void Battle ()
-	{
+	void BattlePrep ()
+	{//TODO
+		
+		ArrayList warriors = new ArrayList ();
+		bool battle = false;
 
-		//TODO
+		for (int i = 0; i < NumberOfPlayers-1; i++) {
+			for (int j = i+1; j < NumberOfPlayers; j++) {
+				if (Players [i].currentGround == Players [j].currentGround) {
+					if (!warriors.Contains (Players [i])) {
+						warriors.Add (Players [i]);
+					}
+					warriors.Add (Players [j]);
+					battle = true;
+				}
+			}
+			if (battle) {
+				Battle (warriors);
+				warriors.Clear ();
+				battle = false;
+			}
+		}
+	}
+
+	void Battle (ArrayList warriors)
+	{
+		int sum = 0;
+		Player[] war = new Player[warriors.Count];
+
+		for (int i = 0; i < warriors.Count; i++) {
+			war [i] = (Player)warriors[i];
+		}
+
+
+		for (int i = 0; i < war.Length; i++) {
+			war [i].min = sum;
+			sum += war [i].getStrength();
+			war [i].max = sum;
+		}
+
+		int result=Random.Range(0,sum);
+		for (int i = 0; i < war.Length; i++) {
+			if (!(war [i].min < result && war [i].max > result)) {
+				war [i].currentGround = war [i].previousGround;
+			}
+			war [i].SetTargetPosition (war [i].currentGround.transform.position);
+			war [i].isAnimating = true;
+		}
+
 	}
 
 	// Update is called once per frame
