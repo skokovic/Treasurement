@@ -51,10 +51,10 @@ public class Player : MonoBehaviour
 	float smoothHeight = 0.5f;
 
 
-	float smoothAngle = 10;
-	float targetAngle = 0;
-	float currentAngle = 0;
-	float deltaAngle = 0;
+//	float smoothAngle = 10;
+//	float targetAngle = 0;
+//	float currentAngle = 0;
+//	float deltaAngle = 0;
 
 
 	public Ground getCurrentGround ()
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
 				this.transform.position = Vector3.SmoothDamp (this.transform.position, new Vector3 (targetPosition.x, targetPosition.y, targetPosition.z), ref velocity, smoothTime);
 			}
 //		} else {
-//			this.transform.Rotate (0, deltaAngle, 0, Space.Self);
+//			this.transform.Rotate (0, deltaAngle, 0, Space.World);
 //		}
 
 	}
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
 		velocity = Vector3.zero;
 
 //		currentAngle = currentGround.transform.rotation.y;
-//
+
 //		if (Math.Abs (pos.x - currentGround.transform.position.x) < 0.1) {
 //			if ((pos.z - currentGround.transform.position.z) > 0) {
 //				targetAngle = 0;
@@ -111,14 +111,12 @@ public class Player : MonoBehaviour
 //			}
 //		}
 //
-//		if (currentAngle > targetAngle) {
-//			deltaAngle = -1;
-//		} else {
-//			deltaAngle = 1;
+//
+//			if (currentAngle > targetAngle) {
+//				deltaAngle = -1;
+//			} else {
+//				deltaAngle = 1;
 //		}
-
-
-
 	}
 		
 }

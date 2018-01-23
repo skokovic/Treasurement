@@ -220,7 +220,7 @@ public class StateManager : MonoBehaviour
 	}
 
 	void BattlePrep ()
-	{//TODO
+	{
 		
 		ArrayList warriors = new ArrayList ();
 		bool battle = false;
@@ -260,14 +260,24 @@ public class StateManager : MonoBehaviour
 		}
 
 		int result=Random.Range(0,sum);
+		int lootAmount = Random.Range (250, 500);
+
 		for (int i = 0; i < war.Length; i++) {
 			if (!(war [i].min < result && war [i].max > result)) {
 				war [i].currentGround = war [i].previousGround;
+				war [i].treasure -= lootAmount;
+			} else {
+				war [i].treasure += lootAmount * (war.Length - 1);
 			}
 			war [i].SetTargetPosition (war [i].currentGround.transform.position);
 			war [i].isAnimating = true;
 		}
 
+	}
+
+	public void Quit()
+	{
+		Application.Quit();
 	}
 
 	// Update is called once per frame
